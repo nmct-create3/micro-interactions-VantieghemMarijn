@@ -606,10 +606,41 @@ input::placeholder {
     Everything form related here
 */
 
+.c-form-field{
+    position: relative;
+}
 .c-form-field--option {
     display: flex;
     align-items: center;
 }
+.c-label-floating{
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    padding: 4px 8px;
+    will-change: transform;
+    transform: translateY( 0 );
+    transition: transform 200ms ease-in-out;
+    box-shadow: 0 0 4px 4px rgba(255,255,255,0.8);
+    background: white;
+}
+.c-form-field:focus-within .c-label-floating {
+    transform: translateY( -24px );
+}
+.c-like__symbol{
+    width: 24px;
+    height: 24px;
+    fill: var(--global-color-neutral-x-light);
+    transition: transform .8s ease-in-out;  
+}
+.c-like__symbol:focus{
+    width: 22px;
+    height: 22px;
+    
+
+    
+}
+
 
 /*
     Component: Input
@@ -622,7 +653,7 @@ input::placeholder {
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: 1px solid var(--global-input-borderColor);
+    border: var(--global-borderWidth) solid var(--input-borderColor, var(--global-input-borderColor));
     border-radius: var(--global-borderRadius);
     background-color: var(--global-input-backgroundColor);
     color: var(--global-input-color);
@@ -633,6 +664,11 @@ input::placeholder {
     outline: none;
     transition: border var(--global-transition-timing-alpha), box-shadow var(--global-transition-timing-alpha);
 }
+.has-error {
+    --label-color: var(--global-color-error);
+    --input-borderColor: var(--global-input-error-borderColor);
+  }
+
 
 .c-input:hover {
     border-color: var(--global-input-hover-borderColor);
@@ -649,8 +685,11 @@ Input password with toggle checkbox on top of it needs
 more padding on the right to avoid overlap
 */
 
+.c-input
+
 .c-input--password-with-toggle {
     padding-right: 52px;
+
 }
 
 /* option input for checkboxes and radio buttons */
@@ -671,7 +710,19 @@ more padding on the right to avoid overlap
     padding-bottom: var(--global-whitespace-sm);
     font-size: 14px;
     line-height: 16px;
-    color: var(--label-color);
+    color: var(--label-color, var(--global-color-neutral-xx-dark));
+      
+}
+.c-label-modifier{
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    padding: 4px 8px;
+    will-change: transform;
+    transform: translateY( 0 );
+    transition: transform 200ms ease-in-out;
+    box-shadow: 0 0 4px 4px rgba(255,255,255,0.8);
+    background: white;
 }
 
 .c-label--option {
@@ -811,6 +862,29 @@ more padding on the right to avoid overlap
 .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
     opacity: 1; /* Show the symbol when the invisible checkbox/radio button is checked */
     transform: scale(1);
+}
+.c-option--hidden:checked + .c-input--password-with-toggle .c-input__hide{
+    opacity: 1;
+}
+.c-option--hidden:checked + .c-like .c-like__symbol {
+    fill: #d80027;
+    transform: rotate(360deg);
+    animation: bounce 0.1s;
+    
+}
+
+.c-input-password-container{
+    position: relative;
+}
+.c-input__hide{
+    opacity: 0;
+}
+.c-input__show ,.c-input__hide{
+    position: absolute;
+    top: 12px;
+    left: 300px;
+    height: 24px;
+    width: 24px;
 }
 
 /*
